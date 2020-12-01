@@ -150,5 +150,26 @@ public final class Recommendations {
             }
         }
     }
+
+    /**
+     *popular method returns the first unseen video of the most popular genre, but only if the user
+     * has a premiun subscription , otherwise the following message is displayed :
+     * "PopularRecommendation cannot be applied!"
+     */
+    public static void popular(final List<User> users,
+                               final JSONArray arrayResult, final Writer fileWriter,
+                               final Action action) throws IOException {
+
+        for (int j = 0; j < users.size(); j++) {
+            if (users.get(j).getUsername().equals(action.getUsername())) {
+                if (users.get(j).getSubscriptionType().equals("BASIC")) {
+
+                    JSONObject object = fileWriter.writeFile(action.getActionId(),
+                                    "field", "PopularRecommendation cannot be applied!");
+                    arrayResult.add(object);
+                }
+            }
+        }
+    }
 }
 

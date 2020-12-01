@@ -56,7 +56,7 @@ public final class ActorQueries {
      * description all the keywords given in the filter and which will be sorted
      */
     public static ArrayList<String> filterDescription(final List<Actor> actors,
-                                           ActionInputData actionInputData) {
+                                           final ActionInputData actionInputData) {
         ArrayList<String> filterWords = new ArrayList<>();
         int dim = actionInputData.getFilters().get(2).size();
 

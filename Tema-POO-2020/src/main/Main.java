@@ -75,6 +75,10 @@ public final class Main {
         JSONArray arrayResult = new JSONArray();
 
         //TODO add here the entry point to your implementation
+        /**
+         * Retaining the data from the input files in lists for each type of data : actor, movie,
+         * show, action and user
+         */
         List<ActorInputData> actorsInputData = new ArrayList<>();
         actorsInputData = input.getActors();
         List<Actor> actors = new ArrayList<>();
@@ -115,7 +119,10 @@ public final class Main {
             serials.add(serial);
         }
 
-
+        /**
+         * Beginning to read the commands from the input data, execute the corresponding tasks and
+         * print the final results in the output files
+         */
         for (int i = 0; i < actions.size(); i++) {
             if (actions.get(i).getActionType().equals("command")) {
                 if (actions.get(i).getType().equals("favorite")) {
@@ -131,11 +138,8 @@ public final class Main {
             }
             if (actions.get(i).getActionType().equals("query")) {
                 if (actions.get(i).getObjectType().equals("actors")) {
-                    if (actions.get(i).getCriteria().equals("average")) {
-
-                    }
                     if (actions.get(i).getCriteria().equals("awards")) {
-                        MainQueries.awards(actors, arrayResult, actions.get(i),
+                        MainQueries.awards(actors, arrayResult,
                                 input.getCommands().get(i), fileWriter);
                     }
                     if (actions.get(i).getCriteria().equals("filter_description")) {
@@ -180,10 +184,6 @@ public final class Main {
                                 input.getCommands().get(i), fileWriter);
                     }
                 }
-                if (actions.get(i).getObjectType().equals("users")
-                        && actions.get(i).getCriteria().equals("num_ratings")) {
-
-                }
             }
             if (actions.get(i).getActionType().equals("recommendation")) {
                 if (actions.get(i).getType().equals("standard")) {
@@ -198,6 +198,9 @@ public final class Main {
                 if (actions.get(i).getType().equals("favorite")) {
                     Recommendations.favorite(users, actions.get(i), movies, serials, arrayResult,
                             fileWriter);
+                }
+                if (actions.get(i).getType().equals("popular")) {
+                    Recommendations.popular(users, arrayResult, fileWriter, actions.get(i));
                 }
 
             }

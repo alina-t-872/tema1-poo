@@ -3,17 +3,14 @@ Starting audit...
 [ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/main/Main.java:6:16: Using the '.*' form of import should be avoided - entities.*. [AvoidStarImport]
 [ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/main/Main.java:7:14: Using the '.*' form of import should be avoided - fileio.*. [AvoidStarImport]
 [ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/main/Main.java:18:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
-[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/main/Main.java:134:73: Must have at least one statement. [EmptyBlock]
-[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/main/Main.java:184:80: Must have at least one statement. [EmptyBlock]
 [ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/Recommendations.java:11:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
 [ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/MainQueries.java:3:16: Using the '.*' form of import should be avoided - entities.*. [AvoidStarImport]
-[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/MainQueries.java:10:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
-[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/ActorQueries.java:27:46: '3' is a magic number. [MagicNumber]
-[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/ActorQueries.java:32:66: '3' is a magic number. [MagicNumber]
-[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/ActorQueries.java:34:75: '3' is a magic number. [MagicNumber]
-[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/ActorQueries.java:52:44: Parameter actionInputData should be final. [FinalParameters]
-[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/Queries.java:7:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/MainQueries.java:9:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
+[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/ActorQueries.java:31:46: '3' is a magic number. [MagicNumber]
+[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/ActorQueries.java:36:66: '3' is a magic number. [MagicNumber]
+[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/ActorQueries.java:38:75: '3' is a magic number. [MagicNumber]
+[ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/queries/Queries.java:6:17: Using the '.*' form of import should be avoided - java.util.*. [AvoidStarImport]
 [ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/Commands.java:3:16: Using the '.*' form of import should be avoided - entities.*. [AvoidStarImport]
 [ERROR] /home/mj/Desktop/tema_poo/tema1-poo/Tema-POO-2020/./src/tasksimplement/Commands.java:4:14: Using the '.*' form of import should be avoided - fileio.*. [AvoidStarImport]
 Audit done.
-Checkstyle ends with 16 errors.
+Checkstyle ends with 13 errors.

@@ -3,14 +3,19 @@ package tasksimplement.queries;
 import entities.Movie;
 import entities.Serial;
 import entities.User;
-
 import java.util.*;
 
 public final class Queries {
     private Queries() { }
 
     /**
+     *Here are implemented methods for the Query part of the homework
+     * These methods create lists only with elements that correspond to the conditions given
+     * in the tests and which are then to be sorted and displayed using the methods in MainQueries
      *
+     * returnListToSort method creeates a map that holds movies and their number of appearances in
+     * the favourite list of the users and only those who which meet the given filters reamin in
+     * the list (returns the list to be sorted for movies favourite query)
      */
     public static Map<String, Integer> returnListToSort(final String year,
                   final String genre, final List<Movie> movies, final List<User> users) {
@@ -48,7 +53,8 @@ public final class Queries {
     }
 
     /**
-     *
+     *descSortedFavourites sorts the given map, which is of type <String, Integer> , in a
+     * descending order alphabetically and by value
      */
     public static List<String> descSortedFavourite(final Map<String,
             Integer> listToSort) {
@@ -87,7 +93,8 @@ public final class Queries {
     }
 
     /**
-     *
+     *ascSortedFavourite sorts the given map, which is of type <String, Integer> , in an
+     * ascending order alphabetically and by value
      */
     public static List<String> ascSortedFavourite(final Map<String,
             Integer> listToSort) {
@@ -107,7 +114,6 @@ public final class Queries {
                 if (value == entry1.getValue()) {
                     strings.add(entry1.getKey());
                 }
-
             }
             finalList1.put(entry2.getValue(), strings);
         }
@@ -126,7 +132,7 @@ public final class Queries {
     }
 
     /**
-     *
+     *returnListToSortLong returns the list to be sorted for movies long query
      */
     public static List<String> returnListToSortLong(final String year,
                   final String genre, final List<Movie> movies, final List<User> users) {
@@ -159,7 +165,7 @@ public final class Queries {
     }
 
     /**
-     *
+     *returnListToSortMostViewed returns the list to be sorted for movies most_viewed query
      */
     public static Map<String, Integer> returnListToSortMostViewed(final String year,
                    final String genre, final List<Movie> movies, final List<User> users) {
@@ -198,7 +204,7 @@ public final class Queries {
         return listToSort;
     }
     /**
-     *
+     *returnListToSortRating returns the list to be sorted for movies rating query
      */
     public static Map<String, Double> returnListToSortRating(final String year,
                   final String genre, final List<Movie> movies, final List<User> users) {
@@ -226,7 +232,8 @@ public final class Queries {
     }
 
     /**
-     *
+     *descSortedFavourites sorts the given map, which is of type <String, Double> , in a
+     *descending order alphabetically and by value
      */
     public static List<String> descSortedRating(final Map<String,
             Double> listToSort) {
@@ -264,7 +271,7 @@ public final class Queries {
         return listFinal;
     }
     /**
-     *
+     *sortedShowFavourites returns the list to be sorted for shows favourite query
      */
     public static Map<String, Integer> sortedShowFavourites(final String year,
                   final String genre, final List<Serial> serials, final List<User> users) {
@@ -305,7 +312,7 @@ public final class Queries {
     }
 
     /**
-     *
+     *sortedShowLongest returns the list to be sorted for shows long query
      */
     public static Map<String, Integer> sortedShowLongest(final String year,
                   final String genre, final List<Serial> serials, final List<User> users) {
@@ -342,7 +349,7 @@ public final class Queries {
     }
 
     /**
-     *
+     *sortedShowMostViewed returns the list to be sorted for shows most_viewed query
      */
     public static Map<String, Integer> sortedShowMostViewed(final String year,
                   final String genre, final List<Serial> serials, final List<User> users) {
@@ -382,7 +389,7 @@ public final class Queries {
     }
 
     /**
-     *
+     *returnShowsListToSortRating returns the list to be sorted for shows rating query
      */
     public static Map<String, Double> returnShowsListToSortRating(final String year,
                                                              final String genre,
