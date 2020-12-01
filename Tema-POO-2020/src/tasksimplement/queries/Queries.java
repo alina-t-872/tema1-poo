@@ -1,4 +1,4 @@
-package tasksimplement;
+package tasksimplement.queries;
 
 import entities.Movie;
 import entities.Serial;
@@ -336,19 +336,17 @@ public final class Queries {
             durationMovie.put(serials.get(j).getTitle(),
                     sum);
         }
-        if(year == null && genre == null) {
+        if (year == null && genre == null) {
             listToSort.putAll(durationMovie);
         } else {
             for (int j = 0; j < serials.size(); j++) {
                 String sir =
                         String.valueOf(serials.get(j).getYear());
                 if (sir.equals(year) && serials.get(j).getGenres().contains(genre)) {
-                    for(Map.Entry<String, Integer> entry :
-                            durationMovie.entrySet()) {
-                        if(entry.getKey().equals(serials.get(j).getTitle())) {
+                    for (Map.Entry<String, Integer> entry : durationMovie.entrySet()) {
+                        if (entry.getKey().equals(serials.get(j).getTitle())) {
                             if (entry.getValue() != 0) {
-                                listToSort.put(serials.get(j).getTitle()
-                                        , entry.getValue());
+                                listToSort.put(serials.get(j).getTitle(), entry.getValue());
                             }
                         }
                     }
@@ -367,29 +365,28 @@ public final class Queries {
         for (int j = 0; j < serials.size(); j++) {
             int nrViews = 0;
             for (int k = 0; k < users.size(); k++) {
-                if(users.get(k).getHistory().containsKey(serials.get(j).getTitle())) {
-                    for(Map.Entry<String, Integer> entry :
-                            users.get(k).getHistory().entrySet()) {
-                        if(serials.get(j).getTitle().equals(entry.getKey())) {
+                if (users.get(k).getHistory().containsKey(serials.get(j).getTitle())) {
+                    for (Map.Entry<String, Integer> entry : users.get(k).getHistory().entrySet()) {
+                        if (serials.get(j).getTitle().equals(entry.getKey())) {
                             nrViews = nrViews + entry.getValue();
-                        }}
-
+                        }
+                    }
                 }
             }
-            if(nrViews != 0) {
+            if (nrViews != 0) {
                 mostViews.put(serials.get(j).getTitle(), nrViews);
             }
         }
         Map<String, Integer> listToSort = new HashMap<>();
-        if(year == null && genre == null) {
+        if (year == null && genre == null) {
             listToSort.putAll(mostViews);
         } else {
             for (int j = 0; j < serials.size(); j++) {
                 String sir =
                         String.valueOf(serials.get(j).getYear());
                 if (sir.equals(year) && serials.get(j).getGenres().contains(genre)) {
-                    for(Map.Entry<String, Integer> entry : mostViews.entrySet()) {
-                        if(entry.getKey().equals(serials.get(j).getTitle())) {
+                    for (Map.Entry<String, Integer> entry : mostViews.entrySet()) {
+                        if (entry.getKey().equals(serials.get(j).getTitle())) {
                             listToSort.put(serials.get(j).getTitle(), entry.getValue());
                         }
                     }
