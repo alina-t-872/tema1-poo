@@ -4,7 +4,6 @@ import entertainment.Season;
 import fileio.SerialInputData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public final class Serial {
     private final String title;
@@ -72,11 +71,11 @@ public final class Serial {
         return seasons;
     }
 
-   public double getGeneralRating() {
+    public double getGeneralRating() {
         return generalRating;
     }
 
-    public void setGeneralRating(double generalRating) {
+    public void setGeneralRating(final double generalRating) {
         this.generalRating = generalRating;
     }
 

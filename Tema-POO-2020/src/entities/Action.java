@@ -36,8 +36,8 @@ public final class Action {
         this.seasonNumber = action.getSeasonNumber();
     }
     public Action(final ActionInputData actionData, final String year,
-                      final List<String> words, final List<String> awards,
-                      final String genre) {
+                  final List<String> words, final List<String> awards,
+                  final String genre) {
         this.actionId = actionData.getActionId();
         this.actionType = actionData.getActionType();
         this.objectType = actionData.getObjectType();

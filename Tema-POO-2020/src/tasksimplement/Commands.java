@@ -3,7 +3,6 @@ package tasksimplement;
 import entities.Action;
 import entities.Serial;
 import entities.User;
-import fileio.ActionInputData;
 import fileio.ShowInput;
 import fileio.UserInputData;
 
@@ -14,29 +13,31 @@ public final class Commands {
     /**
      *
      */
-    public static void view(final ShowInput video, final UserInputData user) {
-            if (user.getHistory().containsKey(video.getTitle())) {
-                user.getHistory().put(video.getTitle(),
-                                  user.getHistory().get(video.getTitle() + 1));
-            } else {
-                user.getHistory().put(video.getTitle(), 1);
-            }
+    public static boolean view(final User user, final String title) {
+        if (user.getHistory().containsKey(title)) {
+            user.getHistory().put(title, (user.getHistory().get(title) + 1));
+            return true;
+        }
+        return false;
     }
 
     /**
      *
      */
     public static double setSeasonRating(final Serial serial,
-                                      final Action action) {
+                                         final Action action) {
         int size = serial.getNumberOfSeasons();
         for (int i = 1; i <= size; i++) {
-            if(i == action.getSeasonNumber()) {
-                serial.getSeasons().get(i-1).getRatings().add(action.getGrade());
+            if (i == action.getSeasonNumber()) {
+                serial.getSeasons().get(i - 1).getRatings().add(action.getGrade());
             }
         }
         return action.getGrade();
     }
 
+    /**
+     *
+     */
     public static double calcRating(final Serial serial) {
         double sumSerial = 0;
 

@@ -21,6 +21,9 @@ public final class Movie {
         this.rating = 0;
     }
 
+    /**
+     *
+     */
     public double calcRating(final double rating) {
         this.rating = rating;
         return rating;
@@ -50,7 +53,7 @@ public final class Movie {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(final double rating) {
         this.rating = rating;
     }
 
