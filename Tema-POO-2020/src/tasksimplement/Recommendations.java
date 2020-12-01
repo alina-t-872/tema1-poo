@@ -9,9 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public final class Recommendations {
     private Recommendations() { }
@@ -85,4 +83,62 @@ public final class Recommendations {
             }
         }
     }
+
+    /**
+     *
+     */
+    public static void favorite(final List<User> users, final Action action,
+                              final List<Movie> movies, final List<Serial> serials,
+                              final JSONArray arrayResult,
+                              final Writer fileWriter) throws IOException {
+        Map<String, Integer> favouriteMovies = new HashMap<>();
+        for (int k = 0; k < users.size(); k++) {
+            for (int j = 0; j < movies.size(); j++) {
+                int cnt = 0;
+
+                if (users.get(k).getFavoriteMovies().contains(movies.get(j).getTitle())) {
+                    cnt++;
+                }
+                if (cnt != 0) {
+                    favouriteMovies.put(movies.get(j).getTitle(), cnt);
+                }
+            }
+            for (int j = 0; j < serials.size(); j++) {
+                int cnt = 0;
+                if (users.get(k).getFavoriteMovies().contains(serials.get(j).getTitle())) {
+                    cnt++;
+                }
+
+                if (cnt != 0) {
+                    favouriteMovies.put(serials.get(j).getTitle(), cnt);
+                }
+            }
+        }
+
+        LinkedHashMap<String, Integer> sortFavourite = new LinkedHashMap();
+        favouriteMovies.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
+                .forEachOrdered(v -> sortFavourite.put(v.getKey(), v.getValue()));
+
+        String filmName = new String();
+        for (int j = 0; j < users.size(); j++) {
+            if (users.get(j).getUsername().equals(action.getUsername())) {
+                for (Map.Entry<String, Integer> entry : sortFavourite.entrySet()) {
+                    if (!users.get(j).getHistory().containsKey(entry.getKey())) {
+                        filmName = entry.getKey();
+                        break;
+                    }
+                }
+                JSONObject object =
+                        fileWriter.writeFile(action.getActionId(),
+                                "field", "FavoriteRecommendation "
+                                 + "result: " + filmName);
+                arrayResult.add(object);
+                break;
+            }
+        }
+
+    }
+
 }
+

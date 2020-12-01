@@ -5,7 +5,6 @@ import entities.Movie;
 import entities.Serial;
 import entities.User;
 import fileio.ActionInputData;
-import fileio.MovieInputData;
 import fileio.Writer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -199,5 +198,29 @@ public final class MainQueries {
                 fileWriter.writeFile(actionInputData.getActionId(),
                         "field", "Query result: " + listFinal);
         arrayResult.add(object);
+    }
+
+    /**
+     *
+     */
+    public static void showsRatings(final List<User> users,
+                                    final List<Serial> serials,
+                                    final JSONArray arrayResult, final Action action,
+                                    final ActionInputData actionInputData,
+                                    final Writer fileWriter) throws IOException {
+        String year = actionInputData.getFilters().get(0).get(0);
+        String genre = actionInputData.getFilters().get(1).get(0);
+        Map<String, Double> listToSort = new HashMap<>();
+        listToSort = Queries.returnShowsListToSortRating(year, genre, serials, users);
+
+        if (action.getSortType().equals("desc")) {
+            List<String> listFinal = new ArrayList<>();
+            listFinal = Queries.descSortedRating(listToSort);
+
+            JSONObject object =
+                    fileWriter.writeFile(actionInputData.getActionId(),
+                            "field", "Query result: " + listFinal);
+            arrayResult.add(object);
+        }
     }
 }

@@ -6,7 +6,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -100,17 +99,19 @@ public final class Commands {
             if (users.get(j).getUsername().equals(action.getUsername())) {
                 if (users.get(j).getHistory().containsKey(action.getTitle())) {
                     users.get(j).getHistory().put(action.getTitle(),
-                            ( users.get(j).getHistory().get(action.getTitle()) )+ 1);
+                            (users.get(j).getHistory().get(action.getTitle())) + 1);
 
                     JSONObject obj = fileWriter.writeFile(action.getActionId(),
-                            "field", "success -> " + action.getTitle() +
-                                    " was viewed with total views of " + users.get(j).getHistory().get(action.getTitle()));
+                            "field", "success -> " + action.getTitle()
+                                    + " was viewed with total views of "
+                                    + users.get(j).getHistory().get(action.getTitle()));
                     arrayResult.add(obj);
                 } else {
                     users.get(j).getHistory().put(action.getTitle(), 1);
                     JSONObject obj = fileWriter.writeFile(action.getActionId(),
-                            "field", "success -> " + action.getTitle() +
-                                    " was viewed with total views of " + users.get(j).getHistory().get(action.getTitle()));
+                            "field", "success -> " + action.getTitle()
+                                    + " was viewed with total views of "
+                                    + users.get(j).getHistory().get(action.getTitle()));
                     arrayResult.add(obj);
                 }
             }

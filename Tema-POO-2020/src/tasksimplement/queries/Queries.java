@@ -3,26 +3,11 @@ package tasksimplement.queries;
 import entities.Movie;
 import entities.Serial;
 import entities.User;
-import fileio.ActionInputData;
-import fileio.ActorInputData;
 
 import java.util.*;
 
 public final class Queries {
     private Queries() { }
-
-    /**
-     *
-     */
-    public static void average(final List<ActorInputData> actors,
-                               final ActionInputData action) {
-        for (int i = 1; i <= action.getNumber(); i++) {
-            if (action.getSortType() == "asc")  { //daca este crescator
-            } else {   //daca este descrescators
-
-            }
-        }
-    }
 
     /**
      *
@@ -389,6 +374,38 @@ public final class Queries {
                         if (entry.getKey().equals(serials.get(j).getTitle())) {
                             listToSort.put(serials.get(j).getTitle(), entry.getValue());
                         }
+                    }
+                }
+            }
+        }
+        return listToSort;
+    }
+
+    /**
+     *
+     */
+    public static Map<String, Double> returnShowsListToSortRating(final String year,
+                                                             final String genre,
+                                                                  final List<Serial> serials,
+                                                                  final List<User> users) {
+        Map<String, Double> serialRatings = new HashMap<>();
+        for (int j = 0; j < serials.size(); j++) {
+            if (serials.get(j).getGeneralRating() != 0) {
+                serialRatings.put(serials.get(j).getTitle(),
+                        serials.get(j).getGeneralRating());
+            }
+        }
+        Map<String, Double> listToSort = new HashMap<>();
+
+        if (year == null && genre == null) {
+            listToSort.putAll(serialRatings);
+        } else {
+            for (int j = 0; j < serials.size(); j++) {
+                String sir = String.valueOf(serials.get(j).getYear());
+                if (sir.equals(year) && serials.get(j).getGenres().contains(genre)) {
+                    if (serials.get(j).getGeneralRating() != 0) {
+                        listToSort.put(serials.get(j).getTitle(),
+                                serials.get(j).getGeneralRating());
                     }
                 }
             }

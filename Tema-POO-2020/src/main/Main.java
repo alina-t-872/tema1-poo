@@ -9,7 +9,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import tasksimplement.Commands;
 import tasksimplement.queries.MainQueries;
-import tasksimplement.queries.Queries;
 import tasksimplement.Recommendations;
 
 import java.io.File;
@@ -77,7 +76,6 @@ public final class Main {
         JSONArray arrayResult = new JSONArray();
 
         //TODO add here the entry point to your implementation
-
         List<ActorInputData> actorsInputData = new ArrayList<>();
         actorsInputData = input.getActors();
         List<Actor> actors = new ArrayList<>();
@@ -135,73 +133,6 @@ public final class Main {
             if (actions.get(i).getActionType().equals("query")) {
                 if (actions.get(i).getObjectType().equals("actors")) {
                     if (actions.get(i).getCriteria().equals("average")) {
-                        Map<String, Double> copyMovies = new HashMap<>();
-                        if (actions.get(i).getSortType().equals("asc"))  { //daca
-                            // este crescator
-                            for (int j = 0; j < actors.size(); j++) {
-                                double sum = 0;
-                                int cnt = 0;
-                                for (int k = 0; k < actors.get(j)
-                                        .getFilmography().size(); k++) {
-
-                                    for (int q = 0; q < movies.size(); q++) {
-                                        if (movies.get(q).getTitle()
-                                                .equals(actors.get(j)
-                                                        .getFilmography().get(k))) {
-                                            sum = sum + movies.get(q).getRating();
-
-                                            if (movies.get(q).getRating() != 0) {
-                                                cnt++;
-                                            }
-                                            break;
-                                        }
-                                    }
-
-                                    for (int q = 0; q < serials.size(); q++) {
-
-                                        if (serials.get(q).getTitle()
-                                                .equals(actors.get(j).getFilmography()
-                                                        .get(k))) {
-
-                                            sum = sum + Commands.calcRating(serials.get(q));
-                                            if (Commands.calcRating(serials.get(q)) != 0) {
-                                                cnt++;
-                                            }
-                                            break;
-                                        }
-                                    }
-                                }
-                                sum = sum / cnt;
-                                copyMovies.put(actors.get(j).getName(), sum);
-                            }
-                            List<Map.Entry<String, Double>> sortActors
-                                    = new LinkedList
-                                    <Map.Entry<String, Double>>(copyMovies.entrySet());
-
-                            Collections.sort(sortActors,
-                                    new Comparator<Map.Entry<String, Double>>() {
-
-                                        public int compare(final Map.Entry<String, Double> o1,
-                                                           final Map.Entry<String, Double> o2) {
-                                            return (o1.getValue()).compareTo(o2.getValue());
-                                        }
-                                    });
-
-                            List<Map.Entry<String, Double>> sortFinal =
-                                    new LinkedList<Map.Entry<String,
-                                            Double>>(copyMovies.entrySet());
-                            for (int k = 0; k < actions.get(i).getNumber(); k++) {
-                                sortFinal.add(sortActors.get(k));
-                            }
-                            JSONObject object =
-                                    fileWriter.writeFile(actions.get(i).getActionId(),
-                                            "field", "Query result: "
-                                                    + sortFinal);
-                            arrayResult.add(object);
-
-                        } else {   //daca este descrescators
-
-                        }
 
                     }
                     if (actions.get(i).getCriteria().equals("awards")) {
@@ -232,7 +163,8 @@ public final class Main {
                 }
                 if (actions.get(i).getObjectType().equals("shows")) {
                     if (actions.get(i).getCriteria().equals("ratings")) {
-
+                        MainQueries.showsRatings(users, serials, arrayResult, actions.get(i),
+                                input.getCommands().get(i), fileWriter);
                     }
                     if (actions.get(i).getCriteria().equals("favorite")) {
                         MainQueries.showsFavorite(users, serials, arrayResult, actions.get(i),
@@ -262,9 +194,12 @@ public final class Main {
                     Recommendations.search(users, actions.get(i), movies, serials, arrayResult,
                             fileWriter);
                 }
+                if (actions.get(i).getType().equals("favorite")) {
+                    Recommendations.favorite(users, actions.get(i), movies, serials, arrayResult,
+                            fileWriter);
+                }
+
             }
-
-
         }
         fileWriter.closeJSON(arrayResult);
     }
