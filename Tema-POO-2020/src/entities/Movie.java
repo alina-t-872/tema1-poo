@@ -5,6 +5,9 @@ import fileio.MovieInputData;
 import java.util.ArrayList;
 
 public final class Movie {
+    /**
+     * The class fields
+     */
     private final String title;
     private final int year;
     private final ArrayList<String> cast;
@@ -12,6 +15,9 @@ public final class Movie {
     private final int duration;
     private double rating;
 
+    /**
+     *Constructor for the class fields
+     */
     public Movie(final MovieInputData movieInputData) {
         this.title = movieInputData.getTitle();
         this.year = movieInputData.getYear();
@@ -22,7 +28,8 @@ public final class Movie {
     }
 
     /**
-     *
+     * Getters & Setters for the class fields because they are private
+     * The method calcRating is used for calculating the rating of the movie given by the user
      */
     public double calcRating(final double rating) {
         this.rating = rating;
@@ -57,6 +64,9 @@ public final class Movie {
         this.rating = rating;
     }
 
+    /**
+     * Overriding the method toString to print the class fields
+     */
     @Override
     public String toString() {
         return "Movie{"

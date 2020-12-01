@@ -7,11 +7,17 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public final class Actor {
+    /**
+     * The class fields
+     */
     private String name;
     private String careerDescription;
     private ArrayList<String> filmography;
     private Map<ActorsAwards, Integer> awards;
 
+    /**
+     *Constructor for the class fields
+     */
     public Actor(final ActorInputData actorInputData) {
         this.name = actorInputData.getName();
         this.careerDescription = actorInputData.getCareerDescription();
@@ -19,6 +25,9 @@ public final class Actor {
         this.awards = actorInputData.getAwards();
     }
 
+    /**
+     * Getters & Setters for the class fields because they are private
+     */
     public String getName() {
         return name;
     }
@@ -47,6 +56,9 @@ public final class Actor {
         this.filmography = filmography;
     }
 
+    /**
+     * Overriding the method toString to print the class fields
+     */
     @Override
     public String toString() {
         return "Actor{"

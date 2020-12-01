@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 public final class Action {
+    /**
+     * The class fields
+     */
     private final int actionId;
     private final String actionType;
     private final String type;
@@ -21,6 +24,9 @@ public final class Action {
     private final int seasonNumber;
     private final List<List<String>> filters = new ArrayList<>();
 
+    /**
+     *Constructors for the class fields
+     */
     public Action(final ActionInputData action) {
         this.actionId = action.getActionId();
         this.actionType = action.getActionType();
@@ -56,6 +62,9 @@ public final class Action {
         this.seasonNumber = 0;
     }
 
+    /**
+     * Getters for the class fields because they are private
+     */
     public int getActionId() {
         return actionId;
     }
@@ -108,6 +117,9 @@ public final class Action {
         return filters;
     }
 
+    /**
+     * Overriding the method toString to print the class fields
+     */
     @Override
     public String toString() {
         return "Action{"

@@ -7,12 +7,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class User {
+    /**
+     * The class fields
+     * The ratedMovies fields represents a map that holds the name of the show or movie
+     * which the user rated and its grade
+     */
     private final String username;
     private final String subscriptionType;
     private final Map<String, Integer> history;
     private final ArrayList<String> favoriteMovies;
     private Map<String, Integer> ratedMovies = new HashMap<>();
 
+    /**
+     *Constructor for the class fields
+     */
     public User(final UserInputData user) {
         this.username = user.getUsername();
         this.subscriptionType = user.getSubscriptionType();
@@ -20,6 +28,9 @@ public final class User {
         this.favoriteMovies = user.getFavoriteMovies();
     }
 
+    /**
+     * Getters for the class fields because they are private
+     */
     public String getUsername() {
         return username;
     }
@@ -40,6 +51,9 @@ public final class User {
         return ratedMovies;
     }
 
+    /**
+     * Overriding the method toString to print the class fields
+     */
     @Override
     public String toString() {
         return "User{"

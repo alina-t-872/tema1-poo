@@ -6,17 +6,21 @@ import fileio.SerialInputData;
 import java.util.ArrayList;
 
 public final class Serial {
+    /**
+     * The class fields
+     * The generalRating field represents the general rating for the show
+     */
     private final String title;
     private final int year;
     private final ArrayList<String> cast;
     private final ArrayList<String> genres;
-
     private final int numberOfSeasons;
     private final ArrayList<Season> seasons;
-
     private double generalRating;
 
-
+    /**
+     *Constructor for the class fields
+     */
     public Serial(final SerialInputData serial) {
         this.title = serial.getTitle();
         this.year = serial.getYear();
@@ -27,26 +31,9 @@ public final class Serial {
         this.generalRating = 0;
     }
 
-    /*public double calcRating(final Serial serial) {
-        double sumSerial = 0;
-
-        for (int i = 0; i < serial.getNumberOfSeasons(); i++) {
-            int sizeSeason = serial.getSeasons().get(i).getRatings().size();
-            double sumSeason = 0;
-            for (int j = 0; j < sizeSeason; j++) {
-                double seasonRating = serial.getSeasons().get(i).getRatings().get(j);
-                sumSeason = sumSeason + seasonRating;
-            }
-            sumSeason = sumSeason / sizeSeason;
-            sumSerial = sumSerial + sumSeason;
-        }
-
-        sumSerial = sumSerial / serial.getNumberOfSeasons();
-        serial.generalRating = sumSerial;
-        return sumSerial;
-    }*/
-
-
+    /**
+     * Getters & Setters for the class fields because they are private
+     */
     public String getTitle() {
         return title;
     }
@@ -79,7 +66,9 @@ public final class Serial {
         this.generalRating = generalRating;
     }
 
-
+    /**
+     * Overriding the method toString to print the class fields
+     */
     @Override
     public String toString() {
         return "Serial{"

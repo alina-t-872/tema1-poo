@@ -1,19 +1,13 @@
 package tasksimplement.queries;
 
-import entities.Action;
-import entities.Movie;
-import entities.Serial;
-import entities.User;
+import entities.*;
 import fileio.ActionInputData;
 import fileio.Writer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class MainQueries {
     private MainQueries() { }
@@ -223,4 +217,56 @@ public final class MainQueries {
             arrayResult.add(object);
         }
     }
+
+    /**
+     *
+     */
+    public static void awards(final List<Actor> actors,
+                                   final JSONArray arrayResult, final Action action,
+                                   final ActionInputData actionInputData,
+                                   final Writer fileWriter) throws IOException {
+        String year = actionInputData.getFilters().get(0).get(0);
+        String genre = actionInputData.getFilters().get(1).get(0);
+        Map<String, Integer> listToSort = new HashMap<>();
+        listToSort = ActorQueries.actorAwards(actors, actionInputData);
+
+        List<String> listFinal = new ArrayList<>();
+        if (actionInputData.getSortType().equals("asc")) {
+            listFinal = Queries.ascSortedFavourite(listToSort);
+        } else {
+            listFinal = Queries.descSortedFavourite(listToSort);
+        }
+
+        JSONObject object =
+                    fileWriter.writeFile(actionInputData.getActionId(),
+                            "field", "Query result: " + listFinal);
+            arrayResult.add(object);
+
+    }
+
+    /**
+     *
+     */
+    public static void filter(final List<Actor> actors,
+                             final JSONArray arrayResult, final Action action,
+                             final ActionInputData actionInputData,
+                             final Writer fileWriter) throws IOException {
+        String year = actionInputData.getFilters().get(0).get(0);
+        String genre = actionInputData.getFilters().get(1).get(0);
+        ArrayList<String> listToSort = new ArrayList<>();
+        listToSort = ActorQueries.filterDescription(actors, actionInputData);
+
+        if (actionInputData.getSortType().equals("asc")) {
+           Collections.sort(listToSort);
+        } else {
+            Collections.sort(listToSort, Collections.reverseOrder());
+        }
+
+        JSONObject object =
+                fileWriter.writeFile(actionInputData.getActionId(),
+                        "field", "Query result: " + listToSort);
+        arrayResult.add(object);
+
+    }
+
 }

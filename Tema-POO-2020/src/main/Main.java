@@ -6,7 +6,6 @@ import common.Constants;
 import entities.*;
 import fileio.*;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import tasksimplement.Commands;
 import tasksimplement.queries.MainQueries;
 import tasksimplement.Recommendations;
@@ -136,10 +135,12 @@ public final class Main {
 
                     }
                     if (actions.get(i).getCriteria().equals("awards")) {
-
+                        MainQueries.awards(actors, arrayResult, actions.get(i),
+                                input.getCommands().get(i), fileWriter);
                     }
                     if (actions.get(i).getCriteria().equals("filter_description")) {
-
+                        MainQueries.filter(actors, arrayResult, actions.get(i),
+                                input.getCommands().get(i), fileWriter);
                     }
                 }
                 if (actions.get(i).getObjectType().equals("movies")) {
